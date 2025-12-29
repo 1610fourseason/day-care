@@ -126,30 +126,38 @@ def post_delete(post_id):
 def information_update():
     info_data = info_services.get_info_date()
     if request.method == 'POST':
-        # 基本情報
-        info_data.name = request.form.get('name')
-        info_data.facility_type = request.form.get("facility_type")
-        info_data.accepted_age = request.form.get("accepted_age")
-        info_data.phone = request.form.get("phone")
-        # 住所情報
-        info_data.postal_code = request.form.get("postal_code")
-        info_data.address = request.form.get("address")
-        # 開所情報
-        info_data.hours_weekday = request.form.get("hours_weekday")
-        info_data.hours_saturday = request.form.get("hours_saturday")
-        info_data.hours_holiday = request.form.get("hours_holiday")
+        try:
+            # 基本情報
+            info_data.name = request.form.get('name')
+            info_data.facility_type = request.form.get("facility_type")
+            info_data.accepted_age = request.form.get("accepted_age")
+            info_data.phone = request.form.get("phone")
+            # 住所情報
+            info_data.postal_code = request.form.get("postal_code")
+            info_data.address = request.form.get("address")
+            # 開所情報
+            info_data.hours_weekday = request.form.get("hours_weekday")
+            info_data.hours_saturday = request.form.get("hours_saturday")
+            info_data.hours_holiday = request.form.get("hours_holiday")
 
-        # 数値系
-        info_data.staff_teacher = int(request.form.get("staff_teacher") or 0)
-        info_data.staff_support = int(request.form.get("staff_support") or 0)
-        info_data.staff_nutrition = int(request.form.get("staff_nutrition") or 0)
-        info_data.staff_cook = int(request.form.get("staff_cook") or 0)
-        info_data.staff_nurse = int(request.form.get("staff_nurse") or 0)
-        info_data.staff_office = int(request.form.get("staff_office") or 0)
-        # 利用料金
-        info_data.childcare_fee_text = request.form.get("childcare_fee_text")
-        print(request.form)
-        db.session.commit()
+            # 数値系
+            info_data.staff_teacher = int(request.form.get("staff_teacher") or 0)
+            info_data.staff_support = int(request.form.get("staff_support") or 0)
+            info_data.staff_nutrition = int(request.form.get("staff_nutrition") or 0)
+            info_data.staff_cook = int(request.form.get("staff_cook") or 0)
+            info_data.staff_nurse = int(request.form.get("staff_nurse") or 0)
+            info_data.staff_office = int(request.form.get("staff_office") or 0)
+            # 利用料金
+            info_data.childcare_fee_text = request.form.get("childcare_fee_text")
+            print(request.form)
+
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            print("information_update error:", repr(e))
+            flash('登録できないデータがあります変更してください', 'danger')
+            return redirect(url_for('admin.information_update'))
+        
         return redirect(url_for('admin.admin'))
     if request.method == 'GET':
         return render_template('admin/information_update.html', info=info_data)
