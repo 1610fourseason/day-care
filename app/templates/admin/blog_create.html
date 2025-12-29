@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container text-left">
+    <div class="row">
+        <div class="card text-secondary mt-4 mb-4">
+            <h1 class="text-center">新規登録</h1>
+            <div class="row justify-content-center mb-3">
+                <a href="{{ url_for('admin.admin_blog') }}" class="btn btn-secondary col-md-4">ブログ管理ページへ戻る</a>
+            </div>
+            <form id="blogCreateForm" method="POST" enctype="multipart/form-data">
+
+                <div class="mb-3">
+                    <label for="title" class="form-label ps-4">タイトル</label>
+                    <input type="text" id="title" name="title" placeholder="タイトル" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="body" class="form-label ps-4">内容</label>
+                    <textarea type="text" id="body" name="body" placeholder="本文を記入" class="form-control"
+                        rows="10"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="fileUpload" class="form-label ps-4">画像</label>
+                    <input type="file" id="fileUpload" name="img" placeholder="本文を記入" class="form-control">
+                </div>
+                <div class="form-check form-switch mb-5 ms-4">
+                    <input class="form-check-input" type="checkbox" role="switch" id="post_to_instagram"
+                        name="post_to_instagram" value="1">
+                    <label class="form-check-label" for="post_to_instagram">Instagramへ投稿</label>
+                </div>
+                <div class="form-check form-switch mb-5 ms-4">
+                    <input class="form-check-input" type="checkbox" role="switch" id="post_to_threads"
+                        name="post_to_threads" value="1">
+                    <label class="form-check-label" for="post_to_instagram">Threadsへ投稿</label>
+                </div>
+
+
+                <div class="row justify-content-center mb-3">
+                    <button type="submit" class="btn btn-primary  col-md-4" id="submitBtn">登録</button>
+
+                    <!-- ローディング中ボタン（非表示） -->
+                    <button class="btn btn-primary d-none col-md-4" type="button" id="loadingBtn" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        <span class="visually-hidden">Loading...</span>
+                        投稿中...
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

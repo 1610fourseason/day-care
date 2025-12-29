@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<!-- ヒーロー画像 -->
+<div class="container text-center my-4 reveal">
+    <img src="{{ url_for('static', filename='img/保育園写真.jpg') }}" class="img-fluid hero-image rounded-4 shadow-sm"
+        alt="保育園の写真">
+</div>
+
+<!-- 保育理念・方針 -->
+<section class="section-policy reveal">
+    <div class="container my-5">
+
+        <!-- タイトル -->
+        <div class="section-title text-center mb-4">
+            <div class="section-en">POLICY</div>
+            <h2 class="section-jp">保育理念・方針</h2>
+        </div>
+
+        <!-- 3つの理念 -->
+        <div class="row justify-content-center g-4 text-center">
+
+            <!-- 1 -->
+            <div class="col-md-4 col-12">
+                <div class="policy-card mx-auto">
+                    <div class="policy-main">
+                        <i class="bi bi-emoji-smile policy-icon"></i>
+                        <div class="policy-title">のびのび遊ぶ</div>
+                    </div>
+                    <div class="policy-detail">
+                        自分なりに物を見たり、感じたり考えたりて、豊かな感性と創造力の芽生えを培います。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2 -->
+            <div class="col-md-4 col-12">
+                <div class="policy-card mx-auto">
+                    <div class="policy-main">
+                        <i class="bi bi-house-heart policy-icon"></i>
+                        <div class="policy-title">
+                            基本的生活習慣を<br>身につける
+                        </div>
+                    </div>
+                    <div class="policy-detail">
+                        あいさつ・食事・身支度など、
+                        日々の生活を通して自立心を育てます。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3 -->
+            <div class="col-md-4 col-12">
+                <div class="policy-card mx-auto">
+                    <div class="policy-main">
+                        <i class="bi bi-heart policy-icon"></i>
+                        <div class="policy-title">
+                            感謝の気持ちを<br>育てる
+                        </div>
+                    </div>
+                    <div class="policy-detail">
+                        相手を思いやり、いたわる心を育てます。また、いろいろな人やもの、相手の人権を尊重し、思いやりのある心を育てます。
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- 施設の特徴 -->
+<div class="container my-5 reveal">
+
+    <!-- タイトル -->
+    <div class="section-title text-center mb-4">
+        <div class="section-en">FACILITY FEATURE</div>
+        <h2 class="section-jp">施設の特徴</h2>
+    </div>
+    <!-- 1行目 -->
+    <div class="row g-0 align-items-center mb-3 rounded overflow-hidden bg-white shadow-sm feature-row">
+        <div class="col-md-3 fw-bold text-center py-3 feature-label">
+            設備・環境
+        </div>
+        <div class="col-md-9 px-4 py-3">
+            <span class="badge feature-badge">
+                園庭あり
+            </span>
+        </div>
+    </div>
+
+    <!-- 2行目 -->
+    <div class="row g-0 align-items-center mb-3 rounded overflow-hidden bg-white shadow-sm feature-row">
+        <div class="col-md-3 fw-bold text-center py-3 feature-label">
+            施設形態・体制
+        </div>
+        <div class="col-md-9 px-4 py-3">
+            <span class="badge feature-badge">
+                延長保育あり
+            </span>
+        </div>
+    </div>
+</div>
+
+{% if latest_post %}
+<div class="container mt-4 mb-4 reveal">
+    <!-- タイトル -->
+    <div class="section-title text-center mb-4">
+        <div class="section-en">LATEST BLOG</div>
+        <h2 class="section-jp">最新のブログ</h2>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card latest-card overflow-hidden shadow-sm">
+                <div class="row g-0">
+
+                    <!-- 画像 -->
+                    <div class="col-md-6">
+                        <img src="{{ url_for('static', filename='uploads/' + latest_post.img_name) }}"
+                            class="latest-img" alt="">
+                    </div>
+
+                    <!-- テキスト -->
+                    <div class="col-md-6">
+                        <div class="card-body d-flex flex-column h-100 p-4">
+
+                            <!-- バッジ + 日付 -->
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="badge latest-badge">BLOG</span>
+                                <span class="latest-date">
+                                    {{ latest_post.created_at.strftime('%Y.%m.%d') if latest_post.created_at else '' }}
+                                </span>
+                            </div>
+
+                            <!-- タイトル -->
+                            <h3 class="latest-title mb-3 text-center">
+                                {{ latest_post.title }}
+                            </h3>
+
+                            <!-- 区切り -->
+                            <div class="latest-divider mx-auto mb-3"></div>
+
+                            <!-- 本文 -->
+                            <div class="flex-grow-1 d-flex align-items-center justify-content-center">
+                                <p class="latest-body mb-0 text-center">
+                                    {{ latest_post.body | truncate(200, True, '...')}}
+                                </p>
+                            </div>
+
+                            <!-- ボタン -->
+                            <div class="mt-4 d-flex justify-content-end">
+                                <a href="{{ url_for('main.blog') }}" class="btn btn-home px-4">
+                                    ブログ一覧
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+    {% if info_data %}
+    <section class="bottom-contact reveal">
+        <div class="container">
+            <div class="bottom-contact-card">
+                <div class="contact-left">
+                    <div class="contact-sub">{{info_data.facility_type}}</div>
+                    <div class="contact-title">{{info_data.name}}</div>
+                </div>
+
+                <a href="tel:{{ info_data.phone | replace('-', '') }}" class="contact-btn">
+                    <i class="bi bi-telephone-outbound-fill"></i>
+                    <span class="contact-btn-text">電話で問い合わせる</span>
+                    <span class="contact-phone">{{info_data.phone}}</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container text-center mt-4">
+    <div class="page-head my-4">
+        <div class="page-head-en">BLOG</div>
+        <h1 class="page-head-jp">
+            <i class="bi bi-journal-text me-2"></i>保育のようす
+        </h1>
+    </div>
+
+    <div class="row g-3">
+        {% for blog in blogs %}
+        <div class="col-12 col-md-4 col-xl-3">
+            <div class="card text-secondary mb-3 blog-cord">
+                <img src="{{ url_for('static', filename='uploads/' + blog.img_name) }}" alt=""
+                    class="card-img-top blog-card-img">
+                <div class="card-body">
+                    <h2 class="h5 text-center mb-2 blog-cord-title">
+                        <a href="{{ url_for('main.readmore', post_id=blog.id) }}"
+                            class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">
+                            {{blog.title}}</a>
+                    </h2>
+                    <p class="blog-cord-text">{{ blog.body | truncate(10, True, '...') }}</p>
+                    <div class="text-center mt-2">
+                        <span class="badge blog-date-badge">
+                            {{ blog.created_at.strftime('%Y-%m-%d') }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock %}

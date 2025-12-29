@@ -1,0 +1,228 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container my-4">
+    <form method="post">
+        <div class="card shadow-sm">
+            <div class="card-body p-0">
+
+
+                <!-- 見出し（任意） -->
+                <div class="p-3 border-bottom text-center">
+                    <h5 class="mb-0">施設概要</h5>
+                </div>
+
+                <!-- ここが「左：項目名 / 右：内容」 -->
+                <div class="table-responsive">
+                    <table class="table mb-0 align-middle">
+                        <tbody>
+                            <tr>
+                                <th class="text-nowrap bg-light">施設名</th>
+                                <td><input type="text" name="name" class="form-control" value="{{ info.name }}"></td>
+                            </tr>
+
+                            <tr>
+                                <th class="text-nowrap bg-light">施設形態</th>
+                                <td><input type="text" name="facility_type" class="form-control"
+                                        value="{{ info.facility_type }}"></td>
+                            </tr>
+                            <!-- 開所時間 -->
+                            <tr>
+                                <th class="text-nowrap bg-light col-3">開所時間</th>
+                                <td>
+                                    <div class="row g-2 justify-content-evenly">
+                                        <div class="col-12 col-md-4 col-lg-3">
+                                            <div class="card text-center h-100">
+                                                <div class="card-header small fw-semibold py-2 staff-card-header">
+                                                    平日
+                                                </div>
+                                                <div class="card-body py-2">
+                                                    <div class="fs-5 fw-bold">
+                                                        <input type="text" name="hours_weekday" class="form-control"
+                                                            value="{{ info.hours_weekday }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-4 col-lg-3">
+                                            <div class="card text-center h-100">
+                                                <div class="card-header small fw-semibold py-2 staff-card-header">
+                                                    土曜日
+                                                </div>
+                                                <div class="card-body py-2">
+                                                    <div class="fs-5 fw-bold">
+                                                        <input type="text" name="hours_saturday" class="form-control"
+                                                            value="{{ info.hours_saturday }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-4 col-lg-3">
+                                            <div class="card text-center h-100">
+                                                <div class="card-header small fw-semibold py-2 staff-card-header">
+                                                    日曜・祝日
+                                                </div>
+                                                <div class="card-body py-2">
+                                                    <div class="fs-5 fw-bold">
+                                                        <input type="text" name="hours_holiday" class="form-control"
+                                                            value="{{ info.hours_holiday }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </tr>
+                            <!-- 受け入れ年齢 -->
+                            <tr>
+                                <th class="text-nowrap bg-light">受け入れ年齢</th>
+                                <td><input type="text" name="accepted_age" class="form-control"
+                                        value="{{ info.accepted_age }}"></td>
+                            </tr>
+
+                            <!-- 定員・在園児・職員 -->
+                            <tr>
+                                <th class="text-nowrap bg-light align-top">定員・在園児・職員</th>
+                                <td>
+                                    <div class="fw-semibold mb-2">職種別の職員数</div>
+
+                                    <div class="row g-2">
+                                        <div class="col-12 col-md-4 col-lg-2">
+                                            <div class="card text-center h-100">
+                                                <div class="card-header small fw-semibold py-2 staff-card-header">
+                                                    保育士<br>幼稚園教諭
+                                                </div>
+                                                <div class="card-body py-2">
+                                                    <div class="fs-5 fw-bold">
+                                                        <input type="number" name="staff_teacher" class="form-control"
+                                                            min="0" value="{{ info.staff_teacher }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-md-4 col-lg-2">
+                                            <div class="card text-center h-100">
+                                                <div class="card-header small fw-semibold py-2 staff-card-header">
+                                                    保育従事者<br>保育補助
+                                                </div>
+                                                <div class="card-body py-2">
+                                                    <div class="fs-5 fw-bold">
+                                                        <input type="number" name="staff_support" class="form-control"
+                                                            min="0" value="{{ info.staff_support }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-md-4 col-lg-2">
+                                            <div class="card text-center h-100">
+                                                <div class="card-header small fw-semibold py-2 staff-card-header">
+                                                    栄養士<br>管理栄養士
+                                                </div>
+                                                <div class="card-body py-2">
+                                                    <div class="fs-5 fw-bold">
+                                                        <input type="number" name="staff_nutrition" class="form-control"
+                                                            min="0" value="{{ info.staff_nutrition }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-md-4 col-lg-2">
+                                            <div class="card text-center h-100">
+                                                <div class="card-header small fw-semibold py-2 staff-card-header">
+                                                    調理師
+                                                </div>
+                                                <div class="card-body py-2">
+                                                    <div class="fs-5 fw-bold">
+                                                        <input type="number" name="staff_cook" class="form-control"
+                                                            min="0" value="{{ info.staff_cook }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-md-4 col-lg-2">
+                                            <div class="card text-center h-100">
+                                                <div class="card-header small fw-semibold py-2 staff-card-header">
+                                                    看護師
+                                                </div>
+                                                <div class="card-body py-2">
+                                                    <div class="fs-5 fw-bold">
+                                                        <input type="number" name="staff_nurse" class="form-control"
+                                                            min="0" value="{{ info.staff_nurse }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-md-4 col-lg-2">
+                                            <div class="card text-center h-100">
+                                                <div class="card-header small fw-semibold py-2 staff-card-header">
+                                                    事務/その他
+                                                </div>
+                                                <div class="card-body py-2">
+                                                    <div class="fs-5 fw-bold">
+                                                        <input type="number" name="staff_office" class="form-control"
+                                                            min="0" value="{{ info.staff_office }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- 利用料金 -->
+                            <tr>
+                                <th class="text-nowrap bg-light">利用料金</th>
+                                <td>
+                                    <div class="d-flex gap-3 flex-wrap">
+                                        <div class="text-muted">保育料</div>
+                                        <input type="text" name="childcare_fee_text" class="form-control mb-1"
+                                            value="{{ info.childcare_fee_text }}">
+                                        <small class="text-muted">
+                                            /月（世帯年収により変動します）
+                                        </small>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- 住所 -->
+                            <tr>
+                                <th class="text-nowrap bg-light">住所</th>
+                                <td>
+                                    <div class="row g-2">
+                                        <div class="col-12 col-md-4">
+                                            <div class="input-group">
+                                                <span class="input-group-text">〒</span>
+                                                <input type="text" name="postal_code" class="form-control"
+                                                    value="{{ info.postal_code }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-8">
+                                            <input type="text" name="address" class="form-control"
+                                                value="{{ info.address }}">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- 電話 -->
+                            <tr>
+                                <th class="text-nowrap bg-light">電話</th>
+                                <td><input type="text" name="phone" class="form-control" value="{{ info.phone }}"></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="card-footer text-end">
+                <button class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container text-center">
+
+    <div class="page-head my-4">
+        <div class="page-head-en">BLOG</div>
+        <h1 class="page-head-jp">
+            <i class="bi bi-journal-text me-2"></i>保育のようす
+        </h1>
+    </div>
+
+    <div class="row justify-content-center mb-5">
+        <div class="col-12 col-lg-8">
+
+            <div class="card latest-card overflow-hidden shadow-sm">
+
+                <!-- 画像（上） -->
+                {% if post.img_name %}
+                <img src="{{ url_for('static', filename='uploads/' + post.img_name) }}" class="latest-img-vertical"
+                    alt="">
+                {% endif %}
+
+                <!-- テキスト -->
+                <div class="card-body p-4">
+
+                    <!-- バッジ + 日付 -->
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge latest-badge">BLOG</span>
+                        <span class="latest-date">
+                            {{ post.created_at.strftime('%Y.%m.%d') }}
+                        </span>
+                    </div>
+
+                    <!-- タイトル -->
+                    <h3 class="latest-title mb-3 text-center">
+                        {{ post.title }}
+                    </h3>
+
+                    <!-- 区切り -->
+                    <div class="latest-divider mx-auto mb-4"></div>
+
+                    <!-- 本文 -->
+                    <div class="post-body text-start">
+                        {{ post.body }}
+                    </div>
+
+                    <!-- ボタン -->
+                    <div class="mt-4 d-flex justify-content-end">
+                        {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('admin.admin_blog') }}" class="btn btn-home px-4">
+                            ブログ管理画面へ
+                        </a>
+                        {% else %}
+                        <a href="{{ url_for('main.blog') }}" class="btn btn-home px-4">
+                            ブログ一覧
+                        </a>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

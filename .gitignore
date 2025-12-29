@@ -1,0 +1,45 @@
+# ---- Python ----
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# virtualenv
+venv/
+env/
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# ---- Secrets ----
+.env
+.env.local
+config.json
+
+# ---- Logs ----
+logs/
+*.log
+*.out
+
+# ---- Database (local only) ----
+*.sqlite3
+db.sqlite3
+
+# ---- Flask ----
+instance/
+
+
+
+# ---- Build ----
+dist/
+build/
+*.egg-info/
+
+# ---- IDE ----
+.vscode/
+.idea/
+
+# ---- OS ----
+.DS_Store
+Thumbs.db

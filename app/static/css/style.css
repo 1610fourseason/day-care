@@ -1,0 +1,564 @@
+body {
+    background-color: #FAF7F2;
+    color: #3F3A36;
+    font-family: "Noto Sans JP", system-ui, -apple-system, sans-serif;
+    padding-top: 72px;
+}
+
+.navbar-custom {
+    background-color: #7A9CC6;
+}
+
+.navbar-custom .navbar-brand {
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    font-size: 1.5rem;
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+    color: #FFFFFF;
+}
+
+.navbar-custom .nav-link:hover,
+.navbar-custom .nav-link.active {
+    color: #EAF2FF;
+    font-weight: 700;
+}
+
+.navbar-custom .nav-link {
+    position: relative;
+    display: inline-block;
+    /* 下線の基準 */
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+}
+
+/* 下線（最初は見えない） */
+.navbar-custom .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+
+    bottom: -6px;
+    /* 文字の少し下 */
+    width: 0;
+    height: 2px;
+    /* 下線の太さ */
+    background-color: #EAF2FF;
+    /* 下線の色 */
+    transition: width 0.5s ease;
+    /* ★ 0.5秒 */
+}
+
+/* ホバー時に下線を伸ばす */
+.navbar-custom .nav-link:hover::after {
+    width: 100%;
+}
+
+/* アクティブ時は常に表示 */
+.navbar-custom .nav-link.active::after {
+    width: 100%;
+}
+
+.navbar-custom .navbar-toggler {
+    border-color: #FFFFFF;
+}
+
+/* ハンバーガーアイコン（線の色） */
+.navbar-custom .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.navbar-custom .navbar-toggler:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.hero-image {
+    filter: brightness(1.05) contrast(0.9);
+    border-radius: 18px;
+    /* Bootstrapより少しやさしく */
+    box-shadow: 0 12px 30px rgba(122, 156, 198, 0.35);
+}
+
+.section-title {
+    margin-bottom: 2.5rem;
+}
+
+.section-en {
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: #7A9CC6;
+    /* ナビバー色 */
+    margin-bottom: 6px;
+}
+
+.section-jp {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #3F3A36;
+}
+
+/* カード全体 */
+.policy-card {
+    width: 240px;
+    height: 260px;
+    background: #fff;
+    border-radius: 20px;
+    border: 2px solid rgba(122, 156, 198, 0.25);
+    padding: 24px 16px;
+    position: relative;
+    text-align: center;
+    transition: all 0.35s ease;
+}
+
+/* アイコン（通常位置） */
+.policy-icon {
+    font-size: 2.5rem;
+    color: #7A9CC6;
+    position: absolute;
+    top: 64px;
+    /* ← 通常時は少し下 */
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.35s ease;
+}
+
+/* タイトル */
+.policy-title {
+    margin-top: 120px;
+    /* ← アイコン分の余白 */
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #3F3A36;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* 説明文（初期は非表示） */
+.policy-detail {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 120px;
+    padding: 0 20px;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #3F3A36;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: all 0.35s ease;
+}
+
+/* hover 時のカード */
+.policy-card:hover {
+    box-shadow: 0 12px 28px rgba(122, 156, 198, 0.35);
+    border-color: #7A9CC6;
+}
+
+/* 🔹 アイコンを上に動かす */
+.policy-card:hover .policy-icon {
+    top: 28px;
+    /* ← 上へ移動 */
+}
+
+/* タイトルを消す */
+.policy-card:hover .policy-title {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+/* 説明文を表示 */
+.policy-card:hover .policy-detail {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 施設の特徴：行全体 */
+.feature-row {
+    border: 2px solid rgba(122, 156, 198, 0.25);
+    /* policy-cardと同系 */
+}
+
+/* 左のラベル（帯） */
+.feature-label {
+    background-color: #EEF3FA;
+    /* ナビバー色を薄く */
+    color: #3F3A36;
+}
+
+/* バッジ（ナビバー色に統一） */
+.feature-badge {
+    border: 1px solid #7A9CC6;
+    color: #7A9CC6;
+    background-color: #FFFFFF;
+    font-weight: 700;
+    padding: 0.35em 0.75em;
+}
+
+
+
+/* ブログの画像のサイズを均一にする */
+.blog-card-img {
+    width: 100%;
+    height: 250px;
+    /* ← 高さを揃える */
+    object-fit: cover;
+    /* ← はみ出した部分をトリミング */
+}
+
+.post-body {
+    white-space: pre-line;
+}
+
+/* 最新ブログカード全体 */
+.latest-card {
+    border-radius: 18px;
+    border: 2px solid rgba(122, 156, 198, 0.18);
+}
+
+/* 左の画像 */
+.latest-img {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    object-fit: cover;
+}
+
+
+
+/* バッジ */
+.latest-badge {
+    background: #EEF3FA;
+    color: #7A9CC6;
+    border: 1px solid rgba(122, 156, 198, 0.35);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+/* 日付 */
+.latest-date {
+    color: #7A9CC6;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+}
+
+/* タイトル */
+.latest-title {
+    font-weight: 700;
+    letter-spacing: 0.06em;
+}
+
+/* 区切り線 */
+.latest-divider {
+    width: 52px;
+    height: 2px;
+    background: #7A9CC6;
+    opacity: 0.8;
+    border-radius: 99px;
+}
+
+/* 本文（改行を反映＋読みやすく） */
+.latest-body {
+    white-space: pre-line;
+    line-height: 1.8;
+    max-width: 26rem;
+    color: #3F3A36;
+}
+
+/* すでに作ったホーム色ボタンがある前提（無ければこれも追加） */
+.btn-home {
+    background-color: #7A9CC6;
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 999px;
+    padding: 0.5em 1.4em;
+    border: none;
+}
+
+.btn-home:hover {
+    background-color: #5f86b8;
+    color: #ffffff;
+}
+
+/* ページ最下部・固定しない問い合わせ */
+.bottom-contact {
+    margin-top: 64px;
+    padding: 32px 0 40px;
+}
+
+.bottom-contact-card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, .16);
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    border: 1px solid rgba(122, 156, 198, .25);
+}
+
+.contact-sub {
+    font-size: 13px;
+    color: #6c757d;
+    margin-bottom: 4px;
+}
+
+.contact-title {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: .04em;
+}
+
+.contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    border-radius: 999px;
+    background: #7A9CC6;
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 6px 14px rgba(122, 156, 198, .35);
+}
+
+.contact-btn:hover {
+    background: #5f86b8;
+    color: #fff;
+}
+
+/* ===== 施設概要テーブル（ホーム配色対応） ===== */
+
+/* テーブル全体 */
+.table {
+    border-color: rgba(122, 156, 198, 0.25);
+}
+
+/* 左側 見出しセル */
+.table th {
+    background-color: rgba(122, 156, 198, 0.08) !important;
+    color: #355070;
+    font-weight: 600;
+    vertical-align: middle;
+    border-right: 1px solid rgba(122, 156, 198, 0.25);
+}
+
+/* 右側 内容セル */
+.table td {
+    background-color: #fff;
+    color: #2c2c2c;
+}
+
+/* 行の区切りをやさしく */
+.table tr {
+    border-bottom: 1px solid rgba(122, 156, 198, 0.18);
+}
+
+/* 見出しカード（施設概要） */
+.card>.border-bottom {
+    background: linear-gradient(180deg,
+            rgba(122, 156, 198, 0.12),
+            rgba(122, 156, 198, 0.04));
+}
+
+.card>.border-bottom h5 {
+    color: #355070;
+    font-weight: 700;
+}
+
+/* 開所時間・職員カードのヘッダー */
+.staff-card-header {
+    background-color: rgba(122, 156, 198, 0.15);
+    color: #355070;
+    border-bottom: none;
+}
+
+/* 小カード全体 */
+.card.text-center {
+    border: 1px solid rgba(122, 156, 198, 0.25);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .08);
+}
+
+/* 電話リンク */
+.table a[href^="tel:"] {
+    color: #7A9CC6;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.table a[href^="tel:"]:hover {
+    text-decoration: underline;
+}
+
+/* スクロール表示アニメーション */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .6s ease, transform .6s ease;
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ===== ブログ一覧カード（ホームの雰囲気に寄せる） ===== */
+.blog-cord{
+  background: #fff;
+  border: 2px solid rgba(122, 156, 198, 0.18);
+  border-radius: 18px;
+  overflow: hidden; /* 画像の角丸を効かせる */
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+  transition: all 0.35s ease;
+}
+
+.blog-cord:hover {
+    box-shadow: 0 12px 28px rgba(122, 156, 198, 0.35);
+    border-color: #7A9CC6;
+}
+
+.blog-cord .card-body{
+  padding: 16px 18px;
+}
+
+.blog-cord-title{
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #3F3A36;
+}
+
+.blog-cord-date{
+  color: #7A9CC6;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 0;
+}
+
+.blog-cord-text{
+  line-height: 1.75;
+  margin-bottom: 0.75rem;
+}
+
+.page-head{
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.page-head-en{
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  color: #7A9CC6;
+  margin-bottom: 6px;
+}
+
+.page-head-jp{
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #3F3A36;
+  display: inline-block;
+  position: relative;
+  padding-bottom: .55rem;
+  margin: 0;
+}
+
+.page-head-jp::after{
+  content:"";
+  display:block;
+  width: 68px;
+  height: 3px;
+  background: #7A9CC6;
+  border-radius: 999px;
+  margin: .55rem auto 0;
+  opacity: .9;
+}
+/* ===== ブログ一覧：日付バッジ ===== */
+.blog-date-badge{
+  background: #EEF3FA;
+  color: #7A9CC6;
+  border: 1px solid rgba(122, 156, 198, 0.35);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  padding: 0.35em 0.85em;
+  border-radius: 999px;
+}
+
+
+
+
+/* スマホ時：th を少し薄く */
+@media (max-width: 576px) {
+    .table th {
+        background-color: rgba(122, 156, 198, 0.12) !important;
+    }
+}
+
+/* スマホは縦並び */
+@media (max-width: 767.98px) {
+    .bottom-contact-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .contact-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* スマホ時 */
+@media (max-width: 767.98px) {
+    .latest-img {
+        min-height: 220px;
+    }
+}
+
+/* スマホ：hoverなし想定 */
+@media (max-width: 767.98px) {
+    .policy-card {
+        width: 100%;
+        height: auto;
+        padding-bottom: 20px;
+    }
+
+    .policy-icon {
+        position: static;
+        transform: none;
+        margin-bottom: 12px;
+    }
+
+    .policy-title {
+        margin-top: 12px;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .policy-detail {
+        position: static;
+        opacity: 1;
+        transform: none;
+        margin-top: 8px;
+    }
+}
+
+@media (max-width: 767.98px) {
+
+    /* 左から出す */
+    .navbar-custom .nav-link::after {
+        left: 0;
+    }
+
+    .navbar-custom .nav-link:hover::after,
+    .navbar-custom .nav-link.active::after {
+        width: 100%;
+    }
+}

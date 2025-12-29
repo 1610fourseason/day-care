@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container text-center">
+    <div class="row">
+        <div class="card text-secondary mt-4 mb-4">
+            <h1 class="text-center">記事の更新</h1>
+            <div class="row justify-content-center mb-3">
+                <a href="{{ url_for('admin.admin_blog') }}" class="btn btn-secondary col-md-4">ブログ管理ページへ戻る</a>
+            </div>
+            <form method="POST" enctype="multipart/form-data">
+
+                <div class="mb-3">
+                    <label for="title" class="form-label">タイトル</label>
+                    <input type="text" id="title" name="title" placeholder="タイトル" class="form-control"
+                        value="{{ post.title }}">
+                </div>
+                <div class="mb-3">
+                    <label for="body" class="form-label">内容</label>
+                    <textarea type="text" id="body" name="body" placeholder="内容" class="form-control"
+                        rows="10">{{ post.body }}</textarea>
+                </div>
+                <div class="row justify-content-center mb-3">
+                    <button type="submit" class="btn btn-primary  col-md-4">更新</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

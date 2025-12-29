@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container text-center mt-4">
+    <!-- 見出し -->
+    <div class="page-head my-4">
+        <div class="page-head-en">ADMIN</div>
+        <h1 class="page-head-jp mb-0">
+            <i class="bi bi-journal-text me-2"></i>ブログ管理
+        </h1>
+    </div>
+
+    <!-- ボタン（見出しの下に配置） -->
+    <div class="text-center mb-4">
+        <a href="{{ url_for('admin.blog_create') }}" class="btn btn-home rounded-pill px-4">
+            ＋ 新規作成
+        </a>
+    </div>
+
+    <div class="row g-3">
+        {% for blog in blogs %}
+        <div class="col-12 col-md-4 col-xl-3">
+            <div class="card text-secondary mb-3 blog-cord">
+                {%if blog.img_name %}
+                <img src="{{ url_for('static', filename='uploads/' + blog.img_name) }}" alt=""
+                    class="card-img-top blog-card-img">
+                {% endif %}
+                <div class="card-body">
+                    <h2 class="h5 text-center mb-2 blog-cord-title">
+                        <a href="{{ url_for('main.readmore', post_id=blog.id) }}"
+                            class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">
+                            {{blog.title}}</a>
+                    </h2>
+                    <p class="blog-cord-text">{{ blog.body | truncate(10, True, '...') }}</p>
+                    <div class="text-center mt-2">
+                        <span class="badge blog-date-badge">
+                            {{ blog.created_at.strftime('%Y-%m-%d') }}
+                        </span>
+                    </div>
+                    <!-- ボタン群（下固定） -->
+                    <div class="d-flex gap-2 justify-content-center mt-2">
+                        <a href="{{ url_for('admin.post_update', post_id=blog.id) }}"
+                            class="btn btn-home rounded-pill px-3">更新</a>
+                        <button type="button" class="btn btn-outline-danger rounded-pill px-3" data-bs-toggle="modal"
+                            data-bs-target="#deleteModal"
+                            data-delete-url="{{url_for('admin.post_delete', post_id=blog.id)}}"
+                            data-post-id="{{blog.id}}" data-title="{{blog.title}}">
+                            削除
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<!-- 削除のモーダル -->
+<div class="modal fade" id="deleteModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4">
+            <div class="modal-header">
+                <h1 class="modal-title">
+                    確認
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <p>この投稿を削除しますか？</p>
+                <div class="fw-bold" id="deleteTitle">タイトル</div>
+            </div>
+            <div class="modal-footer">
+                <form method="post" id="deleteForm" action="">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        キャンセル
+                    </button>
+                    <button type="submit" class="btn btn-danger" id="confirmDeleteBtn">
+                        削除する
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
