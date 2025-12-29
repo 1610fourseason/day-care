@@ -33,3 +33,4 @@ class ProductionConfig(BaseConfig):
     # ローカルテスト時はコメントアウトにする
     SECRET_KEY = os.environ['SECRET_KEY']
     SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL').replace('postgres://', 'postgresql+psycopg://')
+    PUBLIC_BASE_URL = os.getenv('PUBLIC_BASE_URL')
